@@ -30,9 +30,30 @@ ________________________________________________________________________________
 ```
 yum install postfix -y
 ```
-Отредактируйте файл /etc/postfix/main.cf
+Отредактируйте файл [/etc/postfix/main.cf](https://github.com/Edo1993/mail/blob/master/configs/etc/postfix/main.cf)
 
 ```
 vi /etc/postfix/main.cf
 ```
+Редактировались параметры:
 
+mynetworks из статьи - не трогать
+```
+myhostname = server1.unixmen.local
+mydomain = unixmen.local
+inet_interfaces = all
+inet_protocols = all
+#mydestination = $myhostname, localhost.$mydomain, localhost
+mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
+#mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain,
+home_mailbox = Maildir/
+```
+
+Запустите/перезапустите (enable/restart) сервис Postfix
+
+```
+systemctl enable postfix
+systemctl restart postfix
+```
+
+2) Тестирование Postfix почтового сервера
