@@ -19,6 +19,46 @@ ________________________________________________________________________________
 
 [Vagrantfile](https://github.com/Edo1993/mail/blob/master/Vagrantfile) + [конфиги](https://github.com/Edo1993/mail/tree/master/configs) 
 
+Отправки письма через telnet
+
+```
+ed@RobotUnicorn:~/otus/post/$ telnet 192.168.11.150 25
+Trying 192.168.11.150...
+Connected to 192.168.11.150.
+Escape character is '^]'.
+220 server1.unixmen.local ESMTP Postfix
+EHLO server1.unixmen.local
+250-server1.unixmen.local
+250-PIPELINING
+250-SIZE 10240000
+250-VRFY
+250-ETRN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250 DSN
+mail from: <rd4th@mail.ru>
+250 2.1.0 Ok
+rcpt to:<sk@unixmen.local>
+250 2.1.5 Ok
+data
+354 End data with <CR><LF>.<CR><LF>
+From: Karina <rd4th@mail.ru>
+To: Karina <sk@unixmen.local>
+Subject: Test
+Content-Type: text/plain
+
+PLease, work
+.
+250 2.0.0 Ok: queued as 1CD3260EC
+quit
+221 2.0.0 Bye
+Connection closed by foreign host.
+```
+
+Получение
+![Img_alt](https://github.com/Edo1993/mail/blob/master/301.png)
+
+__________________________________________________________________________________________________________________________
 Разворачиваем vm через ```vagrant up```, подключаемся ```vagrant ssh```.
 
 Отключить SELINUX ```setenforce 0```.
@@ -57,3 +97,4 @@ systemctl restart postfix
 ```
 
 2) Тестирование Postfix почтового сервера
+
