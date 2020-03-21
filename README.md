@@ -96,5 +96,31 @@ systemctl enable postfix
 systemctl restart postfix
 ```
 
-2) Тестирование Postfix почтового сервера
+Создать тестового пользователя с именем “SK” и задать пароль
 
+```
+useradd sk
+passwd sk
+```
+
+2) Установка Dovecot
+
+Dovecot — это почтовый IMAP и POP3-сервер (с открытым исходным кодом) для Unix/Linux.
+
+```
+yum install dovecot -y
+```
+
+Настройка Dovecot.
+
+Отредактируйте файл [/etc/dovecot/dovecot.conf](https://github.com/Edo1993/mail/blob/master/configs/etc/dovecot/dovecot.conf),
+
+```
+vi /etc/dovecot/dovecot.conf
+```
+
+Раскомментируйте следующую строку:
+
+```
+protocols = imap pop3 lmtp
+```
