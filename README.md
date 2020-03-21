@@ -113,14 +113,27 @@ yum install dovecot -y
 
 Настройка Dovecot.
 
-Отредактируйте файл [/etc/dovecot/dovecot.conf](https://github.com/Edo1993/mail/blob/master/configs/etc/dovecot/dovecot.conf),
+- Отредактируйте файл [/etc/dovecot/dovecot.conf](https://github.com/Edo1993/mail/blob/master/configs/etc/dovecot/dovecot.conf),
 
 ```
 vi /etc/dovecot/dovecot.conf
 ```
 
-Раскомментируйте следующую строку:
+Раскомментируйте следующую строку - Line 24:
 
 ```
 protocols = imap pop3 lmtp
 ```
+
+- Отредактируйте файл [/etc/dovecot/conf.d/10-mail.conf](https://github.com/Edo1993/mail/blob/master/configs/etc/dovecot/conf.d/10-mail.conf),
+
+```
+vi /etc/dovecot/conf.d/10-mail.conf
+```
+
+Внесите следующие изменения - Line 24:
+
+```
+mail_location = maildir:~/Maildir
+```
+
