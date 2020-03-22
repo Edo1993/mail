@@ -156,7 +156,7 @@ disable_plaintext_auth = yes
 auth_mechanisms = plain login
 ```
 
-- Отредактируйте файл [/etc/dovecot/conf.d/10-master.conf](),
+- Отредактируйте файл [/etc/dovecot/conf.d/10-master.conf](https://github.com/Edo1993/mail/edit/master/configs/etc/dovecot/conf.d/10-master.conf),
 
 ```
 vi /etc/dovecot/conf.d/10-master.conf
@@ -171,4 +171,83 @@ vi /etc/dovecot/conf.d/10-master.conf
  group = postfix
 [...]
 ```
+
+Запустить сервис Dovecot:
+
+```
+systemctl enable dovecot
+systemctl start dovecot
+```
+
+3) Установка Squirrelmail
+
+```
+yum install squirrelmail -y
+```
+
+Настройка Squirrelamil. Перейдите в директорию /usr/share/squirrelmail/config/:
+
+```
+cd /usr/share/squirrelmail/config/
+```
+
+Запустите следующую команду для настройки Squirrelmail:
+
+```
+./conf.pl
+```
+
+Откроется соответствующий мастер установки. Введите “1”, чтобы настроить сведения об организации. Откроется соответствующий мастер установки. Снова введите “1”, чтобы изменить сведения об организации. Введите желаемое имя для вашей организации, после чего нажмите Enter. Аналогично, настройте все оставшиеся пункты (описание, логотип, имя провайдера и т.д.). Когда закончите настройку, нажмите “S”, чтобы сохранить изменения, и “R”, чтобы вернуться обратно в главное меню.
+Настраивалось по статье, поэтому в итоге моя конфигурация выглядит так:
+
+```
+SquirrelMail Configuration : Read: config.php
+Config version 1.4.0; SquirrelMail version unknown
+---------------------------------------------------------
+Organization Preferences
+1.  Organization Name      : Unixmen
+2.  Organization Logo      : ../images/sm_logo.png
+3.  Org. Logo Width/Height : (308/111)
+4.  Organization Title     : SquirrelMail $version
+5.  Signout Page           : 
+6.  Top Frame              : _top
+7.  Provider link          : http://squirrelmail.org/
+8.  Provider name          : Unixmen Mail
+
+R   Return to Main Menu
+C   Turn color off
+S   Save data
+Q   Quit
+```
+
+Теперь, введите “2” для настройки параметров почтового сервера (таких как имя домена, почтовый агент и т.д.).
+Введите “1”, затем введите желаемый домен для почты (например unixmen.local) и нажмите Enter. 
+Введите “3” и замените агента пересылки сообщений (MTA) sendmail на Postfix (то есть SMTP).
+Введите “2”, чтобы переключиться с sendmail на Postfix.
+
+*конфигурация в данном разделе*
+
+```
+SquirrelMail Configuration : Read: config.php
+Config version 1.4.0; SquirrelMail version unknown
+---------------------------------------------------------
+Server Settings
+
+General
+-------
+1.  Domain                 : unixmen.local
+2.  Invert Time            : false
+3.  Sendmail or SMTP       : SMTP
+
+A.  Update IMAP Settings   : localhost:143 (uw)
+B.  Update SMTP Settings   : localhost:25
+
+R   Return to Main Menu
+C   Turn color off
+S   Save data
+Q   Quit
+```
+
+Теперь введите “S” и следом “Q”, чтобы сохранить настройки Squirrelmail и выйти.
+
 
