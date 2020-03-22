@@ -13,7 +13,7 @@
 
 __________________________________________________________________________________________________________________________
 
-Итог:
+# Итог:
 
 Очень помогла [статья](https://itdoxy.com/%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B3%D0%BE-%D0%BF%D0%BE%D1%87%D1%82%D0%BE%D0%B2%D0%BE%D0%B3%D0%BE-%D1%81%D0%B5%D1%80%D0%B2/), собственно, всё по ней и сделано.
 
@@ -59,6 +59,9 @@ Connection closed by foreign host.
 ![Img_alt](https://github.com/Edo1993/mail/blob/master/301.png)
 
 __________________________________________________________________________________________________________________________
+
+# Ход работы
+
 Разворачиваем vm через ```vagrant up```, подключаемся ```vagrant ssh```.
 
 Отключить SELINUX ```setenforce 0```.
@@ -137,3 +140,18 @@ vi /etc/dovecot/conf.d/10-mail.conf
 mail_location = maildir:~/Maildir
 ```
 
+- Отредактируйте файл [/etc/dovecot/conf.d/10-auth.conf](https://github.com/Edo1993/mail/blob/master/configs/etc/dovecot/conf.d/10-auth.conf)
+
+```
+vi /etc/dovecot/conf.d/10-auth.conf
+```
+
+Внесите следующие изменения:
+
+```
+## Line 10 - раскомментируйте ##
+disable_plaintext_auth = yes
+
+## Line 100 - Допишите слово: "login" ##
+auth_mechanisms = plain login
+```
