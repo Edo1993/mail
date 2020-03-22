@@ -250,4 +250,34 @@ Q   Quit
 
 Теперь введите “S” и следом “Q”, чтобы сохранить настройки Squirrelmail и выйти.
 
+4) Создать виртуальный хост (vhost) Squirrelmail в файле конфигурации Apache.
 
+```
+vi /etc/httpd/conf/httpd.conf
+```
+
+Добавить в конец следующие строчки:
+
+```
+Alias /webmail /usr/share/squirrelmail
+<Directory /usr/share/squirrelmail>
+ Options Indexes FollowSymLinks 
+ RewriteEngine On
+ AllowOverride All
+ DirectoryIndex index.php
+ Order allow,deny
+ Allow from all
+</Directory>
+```
+
+Перезагрузить сервис Apache:
+
+```
+systemctl restart httpd
+```
+
+Доступ к Webmail
+
+```
+http://192.168.11.150/webmail/
+```
