@@ -155,3 +155,20 @@ disable_plaintext_auth = yes
 ## Line 100 - Допишите слово: "login" ##
 auth_mechanisms = plain login
 ```
+
+- Отредактируйте файл [/etc/dovecot/conf.d/10-master.conf](),
+
+```
+vi /etc/dovecot/conf.d/10-master.conf
+```
+
+Внесите следующие изменения:
+
+```
+## Line 91, 92 - Раскомментируйте строки и добавьте "postfix" ##
+#mode = 0600
+ user = postfix
+ group = postfix
+[...]
+```
+
